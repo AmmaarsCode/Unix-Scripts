@@ -1,0 +1,46 @@
+#!/bin/bash
+
+
+
+p=0
+r=0
+q=0
+
+
+
+
+set -- $(getopt pr:q "$@")
+
+while getopts :pr:q opt
+do
+        case "$opt" in
+        p)
+        p=1;;
+        r)
+
+        r=1
+        Param=$OPTARG;;
+        q)
+        q=1;;
+        esac
+done
+
+
+
+if [ $p -eq 1 ]
+then
+echo "Flag: p"
+
+fi
+
+if [ $r -eq 1 ]
+then
+echo "Flag: r"
+echo "Param: $Param"
+fi
+
+if [ $q -eq 1 ]
+
+then
+echo "Flag: q"
+fi
