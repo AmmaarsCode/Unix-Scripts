@@ -1,0 +1,19 @@
+#!/bin/bash
+
+
+
+IFS=:
+count=0
+for folder in ~dkitchin/books/
+do
+
+   for file in $folder*
+   do
+      if [ -f $file ]
+      then
+         echo $file
+        count=$[$count + 1]
+      fi
+   done
+done
+echo "Count: $count"
