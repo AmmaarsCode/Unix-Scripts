@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+IFS=':'
+
+result="$(grep -w aanjum /etc/passwd)"
+
+for i in $result
+do
+        echo "$i"
+done
