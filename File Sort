@@ -1,0 +1,41 @@
+#!/bin/bash
+
+
+if [ -z $1 ]
+then
+        echo "ERROR FILE NOT SUPPLIED"
+        exit 1
+fi
+
+if [ ! -r "$1" ]
+then
+   echo "ERROR FILE NOT VALID"
+exit 1
+fi
+
+mkdir platform
+
+exec 0< "$1"
+exec 8>&1
+IFS=,
+
+NUMBER=0
+
+echo -n "PROGRESS: "
+
+while read name platform year genre publisher na eu ja other global
+do
+
+  exec >> platform/$platform
+echo  "$name:$platform:$year:$genre:$publisher:$na:$eu:$ja:$other:$global"
+  NUMBER=$[ $count + 1 ]
+if [[ $(( count % 100 )) == 0 ]]
+then
+   exec 1>&8
+   echo -n .
+fi
+done
+
+exec 1>&8
+echo
+echo Created $(ls platform | wc -l) files in directory platform!!
